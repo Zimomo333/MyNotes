@@ -1,0 +1,19 @@
+<style>
+    div{
+        opacity: 0;
+        transform: translateY(20vh);
+        visibility: hidden;
+        transition: opacity 1200ms ease-out, transform 600ms ease-out,
+        visibility 1200ms ease-out;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    div.is-visible {
+        opacity: 1;
+        transform: none;
+        visibility: visible;
+    }
+</style>
+<div></div>
+

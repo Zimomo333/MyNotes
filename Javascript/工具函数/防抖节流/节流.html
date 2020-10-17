@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input id="input" type="text">
+    <p id="content"></p>
+</div>
+</body>
+<script>
+    let input = document.getElementById('input');
+    let content = document.getElementById('content');
+
+    input.onkeypress= throttle(show,1000).bind(input,'world');  //注意，这里 keypress 事件才支持一直按
+
+    function show(arg) {
+        content.innerHTML+="hello,"+arg+'<br/>';
+    }
+
+    function throttle(func,delay) {
+        let timer = null;
+        return function () {
+            if(!timer){            //必须确保上一次定时器执行完毕
+                timer = setTimeout(()=>{
+                    func.call(this,...arguments);
+                    timer=null;    //及时清理，表示执行完毕，clearTimeout后timer仍有值！！！画重点！！！
+                },delay)
+            }
+        }
+    }
+</script>
+</html>

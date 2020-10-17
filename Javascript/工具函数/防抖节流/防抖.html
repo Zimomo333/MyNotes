@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <input id="input" type="text">
+    <p id="content"></p>
+</div>
+</body>
+<script>
+    let input = document.getElementById('input');
+    let content = document.getElementById('content');
+
+    input.onkeyup= debounce(show, 1000).bind(',hello',',world');
+
+    function show(arg1,arg2) {
+        content.innerHTML+=this.value+arg1+arg2+'<br/>';
+    }
+
+    function debounce(func,delay) {
+        let timer;
+        return function () {
+            if(timer)
+                clearTimeout(timer);
+            timer= setTimeout(()=>{
+                func.call(this,...arguments);
+            },delay);
+        }
+    }
+</script>
+</html>
