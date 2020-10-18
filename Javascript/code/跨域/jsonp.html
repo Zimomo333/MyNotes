@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'http://139.9.182.180:7300/mock/5f43486c2f2f585f01ffb7cf/example/jsonp?jsonp_param_name=callback&callback=handleCallback';
+    document.head.appendChild(script);
+    function handleCallback(res){
+        alert(JSON.stringify(res));
+    }
+</script>
+</html>

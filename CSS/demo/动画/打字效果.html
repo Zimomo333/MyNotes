@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes typing { from { width: 0; } }
+        @keyframes blink-caret { 50% { border-color: transparent; } }
+
+        #english{ 
+            font: bold 200% Consolas, Monaco, monospace;
+            border-right: .1em solid;
+            margin: 2em 1em;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        #chinese{ 
+            font: bold 200% monospace;
+            border-right: .1em solid;
+            margin: 2em 1em;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="english">Hello world, I am Zimomo.Hello world, I am Zimomo.</h1>
+    <h1 id="chinese">你好世界，我是籽毛毛。你好世界，我是籽毛毛。</h1>
+</body>
+<script>
+    var english = document.getElementById('english');
+    var englishLength = english.innerText.length;
+    console.log(englishLength);
+    //  方法一
+    english.style.width = englishLength +'ch';
+    english.style.animation = 'typing 5s steps('+ englishLength +', end), blink-caret .5s step-end infinite alternate';
+
+    // 方法二
+    // english.style.setProperty('width', englishLength +'ch');
+    // english.style.setProperty('animation', 'typing 5s steps('+ englishLength +', end), blink-caret .5s step-end infinite alternate');
+
+    // 方法三
+    // english.setAttribute('style',
+    // `
+    // width: `+ englishLength +`ch;
+    // animation: typing 5s steps(`+ englishLength +`, end), blink-caret .5s step-end infinite alternate;
+    // `)
+
+    // 方法四
+    // english.style.cssText = 
+    // `
+    // width: `+ englishLength +`ch;
+    // animation: typing 5s steps(`+ englishLength +`, end), blink-caret .5s step-end infinite alternate;
+    // `
+    
+    // 方法五
+    // document.styleSheets[0].addRule('#english', 'width: '+ englishLength +'ch');
+    // document.styleSheets[0].addRule('#english', 'animation: typing 5s steps('+ englishLength +', end), blink-caret .5s step-end infinite alternate');
+    
+    var chinese = document.getElementById('chinese');
+    var chineseLength = document.getElementById('chinese').innerText.length;
+    console.log(chineseLength);
+    chinese.style.width = chineseLength * 2 +'ch';
+    chinese.style.animation = 'typing 5s steps('+ chineseLength +', end), blink-caret .5s step-end infinite alternate';
+</script>
+</html>

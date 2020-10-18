@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return check()">
+        <input id="username" type="text"></input>
+        <input id="password" type="password"></input>
+        <input type="submit"></button>
+    </form>
+</body>
+<script>
+    function check(){
+        var username = document.getElementById('username').value;   // 记得取value
+        var password = document.getElementById('password').value;
+        if(username==''){
+            alert('username can not be null');
+            return false;
+        }
+        if(password==''){
+            alert('password can not be null');
+            return false;
+        }
+        return true;
+    }
+</script>
+</html>
