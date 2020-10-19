@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css元素hover時控制另一个元素的显示隐藏</title>
+    <style type="text/css">
+        .head > li{
+            width: 100px;
+            text-align: center;
+            background-color: lightgray;
+            margin-left: 5px;
+            float: left;
+            list-style: none;
+        }
+        .head li ul{
+            display: none;
+        }
+        .head li:hover ul{
+            display: block;
+            padding: 0;
+        }
+
+        .head li ul li{
+            list-style: none;
+            text-align: center;
+        }
+
+        .head li ul li:hover{
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <ul class="head">
+            <li>首页
+                <ul>
+                    <li>margin</li>
+                    <li>float</li>
+                    <li>padding</li>
+                </ul>
+            </li>
+            <li>关于我们
+                <ul>
+                    <li>margin</li>
+                    <li>float</li>
+                    <li>padding</li>
+                </ul>
+            </li>
+            <li>联系我们
+                <ul>
+                    <li>margin</li>
+                    <li>float</li>
+                    <li>padding</li>
+                </ul>
+            </li>
+            <li>企业建设
+                <ul>
+                    <li>margin</li>
+                    <li>float</li>
+                    <li>padding</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
