@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多个Class覆盖规则</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            margin: 50px;
+            color: white;
+        }
+        .one{
+            background-color: red;
+        }
+        .two{
+            background-color: green;
+        }
+        .two_{
+            background-color: green;
+        }
+        .one_{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="one two">一</div></div>     <!-- 并非根据class先后来决定覆盖顺序，而是根据class样式的定义顺序来决定 -->
+    <div class="one_ two_">二</div>
+</body>
+</html>
