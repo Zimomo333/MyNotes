@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            min-width: 1250px;
+        }
+        ul{
+            padding:0;
+        }
+        li{
+            float:left;
+            list-style: none;
+            margin-right:30px;
+            font-size: small;
+            cursor: pointer;
+        }
+        li:hover{
+            color:#315efb;
+        }
+        #header_left{
+            float:left;
+            margin-left:25px;
+        }
+        #header_right{
+            float:right;
+            display: flex;
+            align-items: center;
+        }
+        main{
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #search_input{
+            width:548px;
+            height: 40px;
+            padding: 0 12px;
+            border: 2px solid #c4c7ce;
+            border-radius: 10px 0 0 10px;
+            outline: 0;     /* 去掉focus框 */ 
+            vertical-align: middle;     /* 解决两个input不对齐，是因为input内文字大小影响行高 */
+        }
+        #search_input:focus{
+            border-color: #4e6ef2;
+        }
+        #search_button{
+            position: relative;
+            left: -2px;
+            width: 108px;
+            height: 44px;
+            padding: 0;
+            background-color: #4e6ef2;
+            border: 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 17px;
+            color: #fff;
+            outline: 0;
+            vertical-align: middle;     /* 解决两个input不对齐，是因为input内文字大小影响行高 */
+        }
+        #more_btn{
+            padding-bottom: 10px;
+        }
+        #more_btn:hover + div {
+            display: block;
+        }
+        #more{
+            display: none;
+            position: absolute;
+            top: 50px;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px 0 rgba(0,0,0,.15);
+            width: 200px;
+            height: 100px;
+        }
+        #more:hover{
+            display: block;
+            cursor: auto;
+        }
+        #avatar{
+            padding: 2px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <ul id="header_left">
+                <li><a>新闻</a></li>
+                <li><a>hao123</a></li>
+                <li><a>地图</a></li>
+                <li><a>视频</a></li>
+                <li><a>贴吧</a></li>
+                <li><a>学术</a></li>
+                <li>
+                    <a id='more_btn'>更多</a>
+                    <div id='more'>
+                        more
+                    </div>
+                </li>
+            </ul>
+            <ul id="header_right">
+                <li><a>天气</a></li>
+                <li><a>设置</a></li>
+                <li>
+                    <img id='avatar' src="https://himg.bdimg.com/sys/portraitn/item/d100d7d1d7719821">
+                    <a>籽毛毛</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <img width="270" height="129" src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png" alt="百度">
+        <form>
+            <input id="search_input"/><input id="search_button" type="submit" value="百度一下"/>
+        </form>
+    </main>
+    <footer></footer>
+</body>
+</html>
