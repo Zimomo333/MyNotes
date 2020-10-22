@@ -1,1 +1,5 @@
-console.log(typeof(0 && "a"))
+function a(){
+    console.log('b')
+}
+var a
+console.log(a)
