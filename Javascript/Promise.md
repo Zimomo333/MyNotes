@@ -142,3 +142,56 @@ new Promise((resolve, reject) => {
 
 https://www.zhihu.com/question/49718514
 
+
+
+
+
+## Promise模拟实现
+
+https://segmentfault.com/a/1190000016550260
+
+https://github.com/xieranmaya/blog/issues/3
+
+```javascript
+function Promise(executor) {
+  var self = this
+
+  self.status = 'pending'
+  self.onResolvedCallback = []
+  self.onRejectedCallback = []
+
+  function resolve(value) {
+    if (value instanceof Promise) {
+      return value.then(resolve, reject)
+    }
+    setTimeout(function() { // 异步执行所有的回调函数
+      if (self.status === 'pending') {
+        self.status = 'resolved'
+        self.data = value
+        for (var i = 0; i < self.onResolvedCallback.length; i++) {
+          self.onResolvedCallback[i](value)
+        }
+      }
+    })
+  }
+
+  function reject(reason) {
+    setTimeout(function() { // 异步执行所有的回调函数
+      if (self.status === 'pending') {
+        self.status = 'rejected'
+        self.data = reason
+        for (var i = 0; i < self.onRejectedCallback.length; i++) {
+          self.onRejectedCallback[i](reason)
+        }
+      }
+    })
+  }
+
+  try {
+    executor(resolve, reject)
+  } catch (reason) {
+    reject(reason)
+  }
+}
+```
+
