@@ -1,9 +1,17 @@
-Object.prototype.mycreate= function(obj){
-    var F = function(){}
-    F.prototype = obj
-    return new F()
+var bbb = {
+    i: 10,
+    toString: function () {
+        console.log('toString');
+        return this.i;
+    },
+    valueOf: function () {
+        console.log('valueOf');
+        return this.i;
+    }
 }
-
-var a = Object.mycreate({a:'1'})
-
-console.log(a.a)
+alert(bbb);// 10 toString
+alert(+bbb); // 10 valueOf
+alert('' + bbb); // 10 valueOf
+alert(String(bbb)); // 10 toString
+alert(Number(bbb)); // 10 valueOf
+alert(bbb == '10'); // true valueOf
