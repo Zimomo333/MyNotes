@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // onload是等所有的资源文件加载完毕以后再绑定事件
+      window.onload = function () {
+        // 获取图片列表，即img标签列表
+        var imgs = document.querySelectorAll('[data-src]')
+
+        // 懒加载实现
+        function lazyload(img) {
+          // 判断是否未加载
+          if (img.getAttribute('src') === 'loading.gif') {
+            img.src = img.getAttribute('data-src')
+          }
+        }
+
+        var observer = new IntersectionObserver(entries => {
+          // If intersectionRatio is 0, the target is out of view, we do not need to do anything.
+          if (entries[0].intersectionRatio <= 0) return
+          lazyload(entries[0].target)
+        })
+
+        imgs.forEach(item => observer.observe(item))
+      }
+    </script>
+    <style>
+      div {
+        height: 1200px;
+        background-color: #bada55;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <img
+      src="loading.gif"
+      data-src="https://w.wallhaven.cc/full/p8/wallhaven-p8rdq9.jpg"
+    />
+    <div></div>
+    <img
+      src="loading.gif"
+      data-src="https://w.wallhaven.cc/full/lm/wallhaven-lm5w9r.jpg"
+    />
+  </body>
+</html>

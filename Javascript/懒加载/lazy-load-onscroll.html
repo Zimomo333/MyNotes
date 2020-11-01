@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      // onload是等所有的资源文件加载完毕以后再绑定事件
+      window.onload = function () {
+        // 获取图片列表，即img标签列表
+        var imgs = document.querySelectorAll('[data-src]')
+
+        // 懒加载实现
+        function lazyload(imgs) {
+          // 可视区域高度
+          var h = window.innerHeight
+          // 滚动区域高度
+          var s = document.documentElement.scrollTop
+          for (let i = 0; i < imgs.length; i++) {
+            // 判断是否未加载
+            if (imgs[i].getAttribute('src') === 'loading.gif') {
+              // 图片距离顶部的距离小于可视区域和滚动区域之和时懒加载
+              if (h + s > imgs[i].offsetTop) {
+                imgs[i].src = imgs[i].getAttribute('data-src')
+              }
+            }
+          }
+        }
+
+        lazyload(imgs)
+
+        // 滚屏函数
+        window.onscroll = function () {
+          lazyload(imgs)
+        }
+      }
+    </script>
+    <style>
+      div {
+        height: 1200px;
+        background-color: #bada55;
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+    <img
+      src="loading.gif"
+      data-src="https://w.wallhaven.cc/full/p8/wallhaven-p8rdq9.jpg"
+    />
+    <div></div>
+    <img
+      src="loading.gif"
+      data-src="https://w.wallhaven.cc/full/lm/wallhaven-lm5w9r.jpg"
+    />
+  </body>
+</html>

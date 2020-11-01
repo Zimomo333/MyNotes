@@ -4,5 +4,6 @@
 "prettier.singleQuote": true,	    // 除了jsx外，都使用单引号
 // "prettier.jsxSingleQuote": false	// jsx中默认使用双引号
 "prettier.semi": false              // js末尾不加分号
+"prettier.arrowParens": "avoid"     // 箭头函数仅有一个参数是不加括号
 ```
 
