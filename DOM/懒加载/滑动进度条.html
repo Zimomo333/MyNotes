@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>滑动进度条(progress-indicator)</title>
+    <style>
+      #progress-indicator {
+        height: 5px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #bada55;
+      }
+      article {
+        height: 5000px;
+      }
+    </style>
+    <script>
+      // onload是等所有的资源文件加载完毕以后再绑定事件
+      window.onload = function () {
+        var progress_indicator = document.querySelector('#progress-indicator')
+
+        // 滚屏函数
+        window.onscroll = function () {
+          // 已滚动区域高度
+          var scrollHeight = document.documentElement.scrollTop
+          // 可滚动高度 = 最大可滚动高度 - 视窗高度
+          var totalHeight =
+            document.documentElement.scrollHeight - window.innerHeight
+          progress_indicator.style.setProperty(
+            'width',
+            (scrollHeight / totalHeight) * 100 + '%'
+          )
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="progress-indicator"></div>
+    <article></article>
+  </body>
+</html>
