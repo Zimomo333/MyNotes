@@ -201,6 +201,69 @@ array.map(function(currentValue,index,arr), thisValue)
 
 
 
+
+
+# reduce()
+
+对数组中的每个元素执行一个由您提供的**reducer**函数(升序执行)，将其结果汇总为单个返回值。
+
+## 语法
+
+```javascript
+arr.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])
+```
+
+### 参数
+
+- **`callback`**
+
+  执行数组中每个值的函数，包含四个参数：
+
+  **`accumulator`**累计器累计回调的返回值; 它是上一次调用回调时返回的累积值，或`initialValue`（见于下方）。
+
+  **`currentValue`**数组中正在处理的元素。
+
+  **`index` **（可选）数组中正在处理的当前元素的索引。 如果提供了`initialValue`，则起始索引号为0，否则从索引1起始。
+
+  **`array`**（可选）调用`reduce()`的数组
+
+- **`initialValue`**（可选）
+
+  作为第一次调用 `callback`函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的第一个元素。 在没有初始值的空数组上调用 reduce 将报错。
+
+### 返回值
+
+函数累计处理的结果
+
+### 实例
+
+### 1. 求数组项之和
+
+```javascript
+var sum = arr.reduce(function (prev, cur) {
+    return prev + cur;
+},0);
+```
+
+### 2. 求数组项最大值
+
+```javascript
+var max = arr.reduce(function (prev, cur) {
+    return Math.max(prev,cur);
+});
+```
+
+### 3. 数组去重
+
+```javascript
+var newArr = arr.reduce(function (prev, cur) {
+    prev.indexOf(cur) === -1 && prev.push(cur);
+    return prev;
+},[]);
+```
+
+
+
 # indexOf() 
 
 ##### 可返回某个指定的字符串值在字符串中首次出现的位置。
@@ -345,46 +408,6 @@ arguments并**非真正的数组**
 
 1. 使用slice方法：var args = Array . prototype . slice . call ( arguments , 0 )
 2. 循环遍历逐一填入新数组。
-
-
-
-
-
-
-
-# reduce()
-
-对数组中的每个元素执行一个由您提供的**reducer**函数(升序执行)，将其结果汇总为单个返回值。
-
-## 语法
-
-```javascript
-arr.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue])
-```
-
-### 参数
-
-- **`callback`**
-
-  执行数组中每个值的函数，包含四个参数：
-
-  **`accumulator`**累计器累计回调的返回值; 它是上一次调用回调时返回的累积值，或`initialValue`（见于下方）。
-
-  **`currentValue`**数组中正在处理的元素。
-
-  **`index` **（可选）数组中正在处理的当前元素的索引。 如果提供了`initialValue`，则起始索引号为0，否则从索引1起始。
-
-  **`array`**（可选）调用`reduce()`的数组
-
-- **`initialValue`**（可选）
-
-  作为第一次调用 `callback`函数时的第一个参数的值。 如果没有提供初始值，则将使用数组中的第一个元素。 在没有初始值的空数组上调用 reduce 将报错。
-
-### 返回值
-
-函数累计处理的结果
-
-
 
 
 
