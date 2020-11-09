@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue3.0-Proxy</title>
+    <script src="https://unpkg.com/vue@next"></script>
+  </head>
+  <body>
+    <div id="root">
+      {{ arr }}
+      <button @click="handClick">点击</button>
+    </div>
+  </body>
+  <script>
+    const root = {
+      data() {
+        return {
+          arr: [1, 2, 3],
+        }
+      },
+      methods: {
+        handClick: function () {
+          this.arr[0] = 0
+        },
+      },
+    }
+    Vue.createApp(root).mount('#root')
+  </script>
+</html>

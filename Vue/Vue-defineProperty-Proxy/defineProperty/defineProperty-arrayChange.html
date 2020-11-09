@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue2.0-defineProperty</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="root">
+      {{ arr }}
+      <button @click="handClick">点击</button>
+    </div>
+  </body>
+  <script>
+    var root = new Vue({
+      el: '#root',
+      data: {
+        arr: [1, 2, 3],
+      },
+      methods: {
+        handClick: function () {
+          // Vue2.0 无法检测数组某下标内容的变化，只能检测长度、顺序变化
+          this.arr[0] = 0
+        },
+      },
+    })
+  </script>
+</html>
