@@ -36,7 +36,7 @@ sort()
 reverse()
 ```
 
-其实是作者把无法监听数组的情况hack掉了,以下是方法示例。
+其实是作者把无法监听数组的情况hack掉了，以下是方法示例。
 
 ```jsx
 const aryMethods = ['push', 'pop', 'shift', 'unshift', 'splice', 'sort', 'reverse'];
@@ -69,11 +69,11 @@ let list2 = ['a', 'b', 'c'];
 list2.push('d');  // 4
 ```
 
-由于只针对了八种方法进行了hack,所以其他数组的属性也是检测不到的。
+由于只针对了八种方法进行了hack，所以其他数组的属性也是检测不到的。
 
 ### 缺陷二
 
-我们应该注意到在上文中的实现里,我们多次用遍历方法遍历对象的属性，这就引出了`Object.defineProperty`的第二个缺陷,只能劫持对象的属性,因此我们需要对每个对象的每个属性进行遍历，如果属性值也是对象那么需要深度遍历。
+我们应该注意到在上文中的实现里，我们多次用遍历方法遍历对象的属性，这就引出了`Object.defineProperty`的第二个缺陷，只能劫持对象的属性，因此我们需要对每个对象的每个属性进行遍历，如果属性值也是对象那么需要深度遍历。
 
 ```javascript
 // 遍历对象,对其属性值进行劫持
@@ -91,3 +91,49 @@ Object.keys(data).forEach(function(key) {
   });
 });
 ```
+
+
+
+
+
+## Vue3.0   Proxy
+
+ES6 Proxy 指南 https://es6.ruanyifeng.com/#docs/proxy
+
+### Proxy实现双向绑定
+
+```javascript
+const input = document.getElementById('input');
+const span = document.getElementById('span');
+const obj = {};
+
+const newObj = new Proxy(obj, {
+  get: function(target, key, receiver) {
+    console.log(`getting ${key}!`);
+    return Reflect.get(target, key, receiver);
+  },
+  set: function(target, key, value, receiver) {
+    console.log(target, key, value, receiver);
+    if (key === 'text') {
+      span.innerHTML = value;
+    }
+    return Reflect.set(target, key, value, receiver);
+  },
+});
+
+input.addEventListener('keyup', function(e) {
+  newObj.text = e.target.value;
+});
+```
+
+### 优势
+
+Proxy不需要hack，就可以无压力监听数组的变化。
+
+Proxy有多达13种拦截方法，不限于apply、ownKeys、deleteProperty、has等等是`Object.defineProperty`不具备的。
+
+Proxy返回的是一个新对象，我们可以只操作新的对象达到目的，而`Object.defineProperty`只能遍历对象属性直接修改。
+
+### 劣势
+
+Proxy的劣势就是兼容性问题，而且无法用polyfill磨平，因此Vue的作者才声明需要等到下个大版本(3.0)才能用Proxy重写。
