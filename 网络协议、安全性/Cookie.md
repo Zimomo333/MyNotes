@@ -1,4 +1,22 @@
-https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies
+## Cookie 应该由前端还是后端设置 ?
+
+stackoverflow：https://stackoverflow.com/questions/26082511/which-way-to-create-cookie-by-frontend-or-backend
+
+1. Where is the content for the cookie created?  If it's a session  id, then that's probably created on the server so the cookie would be  created there.  If it's a user viewing preference that isn't stored  server-side, then that's probably set in the client and the cookie would be set there.
+
+   如果是session id，则由后端生成并设置。如果是用户视图选择（例如主题风格）等不依赖服务端的数据，则由前端设置。
+
+2. Server-side cookies can be set with additional security (called  http-only) that makes them visible only to servers, not to client-side  javascript, but they are still stored by browsers to represent a  particular client.
+
+   后端cookies可以设置http-only，前端不能使用 Js 经由  [`Document.cookie`](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/cookie) 属性、[`XMLHttpRequest`](https://developer.mozilla.org/zh-CN/docs/Web/API/XMLHttpRequest) 和  [`Request`](https://developer.mozilla.org/zh-CN/docs/Web/API/Request) APIs 进行访问，以防范跨站脚本攻击（XSS）。
+
+
+
+## Set-Cookie
+
+响应首部 **`Set-Cookie`** 被用来由服务器端向客户端发送 cookie。
+
+MDN：https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Cookies
 
 ## 创建Cookie
 

@@ -1,22 +1,11 @@
-var arr = [],
-  n = 9
+var arr = []
 
-for (var i = 1; i <= n; i++) {
-  arr.push(i)
-}
+var obj = {}
 
-while (arr.length > 3) {
-  for (var i = 0; i < arr.length; i++) {
-    if ((i + 1) % 3 === 0) {
-      arr[i] = -1
-    }
-  }
-  for (var i = 0; i < arr.length; i++) {
-    if (arr[i] === -1) {
-      arr.splice(i, 1)
-      i--
-    }
-  }
-}
+var id = arr.push(obj)
 
-console.log(arr[2])
+obj.createTime = new Date()
+
+console.log(id)
+
+console.log(arr)
