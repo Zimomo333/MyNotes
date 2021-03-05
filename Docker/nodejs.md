@@ -15,9 +15,13 @@ From node
 
 WORKDIR /app # 容器内工作目录
 COPY package*.json /app/
-RUN npm --registry https://registry.npm.taobao.org i -S
+RUN npm --registry https://registry.npm.taobao.org i --prod
 COPY ./ /app/
 # RUN npm start 构造镜像不需要start
+```
+
+```
+docker build -t tarkov .
 ```
 
 
